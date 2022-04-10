@@ -271,6 +271,7 @@ extension CoordinatesPresenter {
                     switch result {
                     case .success(let passes) :
                         aircraft.airPasses.append(contentsOf: passes)
+                        self.createCSV(for: observer.name, aircraftName: aircraft.name, with: passes)
                     case .failure(_):
                         break
                     }
@@ -389,7 +390,7 @@ extension CoordinatesPresenter {
         do {
             let path = try fileManager.url(for: .documentDirectory, in: .allDomainsMask, appropriateFor: nil, create: false)
             let fileURL = path.appendingPathComponent("Нераспределенные задачи.csv")
-            try csvString.write(to: fileURL, atomically: true, encoding: .utf8)
+            try csvString.write(to: fileURL, atomically: true, encoding: .unicode)
         } catch {
             print("error creating file")
         }
@@ -404,22 +405,24 @@ extension CoordinatesPresenter {
         do {
             let path = try fileManager.url(for: .documentDirectory, in: .allDomainsMask, appropriateFor: nil, create: false)
             let fileURL = path.appendingPathComponent("Задачи.csv")
-            try csvString.write(to: fileURL, atomically: true, encoding: .utf8)
+            try csvString.write(to: fileURL, atomically: true, encoding: .unicode)
         } catch {
             print("error creating file")
         }
     }
     
     private func createCSV() {
-        var csvString = "Имя задачи,Дата,Интервал,Продолжительность [мин.]\n"
+       
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM-dd-yyyy HH:mm"
         for station in ObserverStations.observers {
+            var csvString = "Станция \(station.name.replacingOccurrences(of: ",", with: " "))\n"
+            csvString += "Имя задачи,Дата,Интервал,Продолжительность [мин.]\n"
             for stroke in station.busyTimes {
                 if let taskDate = stroke.value.date {
                     let interval = Double(taskDate.timeIntervalSince1970 / 60).rounded()
                     if !csvString.contains("\(stroke.value.name)") {
-                        csvString += "\(stroke.value.name),\(dateFormatter.string(from: taskDate)),\(interval),\(stroke.value.duration / 60)\n"
+                        csvString += "КА \(stroke.value.aircraft.name.replacingOccurrences(of: ",", with: " ")),\(stroke.value.name),\(dateFormatter.string(from: taskDate)),\(interval),\(stroke.value.duration / 60)\n"
                     }
                 }
             }
@@ -428,10 +431,30 @@ extension CoordinatesPresenter {
             do {
                 let path = try fileManager.url(for: .documentDirectory, in: .allDomainsMask, appropriateFor: nil, create: false)
                 let fileURL = path.appendingPathComponent("\(station.type.rawValue).csv")
-                try csvString.write(to: fileURL, atomically: true, encoding: .utf8)
+                try csvString.write(to: fileURL, atomically: true, encoding: .unicode)
             } catch {
                 print("error creating file")
             }
+        }
+    }
+    
+    private func createCSV(for observer: String, aircraftName: String, with passes: [AirPass]) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM-dd-yyyy HH:mm"
+        
+        var csvString = "Имя КА \(aircraftName), станция \(observer)\n"
+        csvString += "Начало связи, Окончание связи, Продолжительность сеанса [c]\n"
+        for pass in passes {
+            csvString += "\(dateFormatter.string(from: pass.start)),\(dateFormatter.string(from: pass.end)),\(pass.duration)\n"
+        }
+        
+        let fileManager = FileManager.default
+        do {
+            let path = try fileManager.url(for: .documentDirectory, in: .allDomainsMask, appropriateFor: nil, create: false)
+            let fileURL = path.appendingPathComponent("\(aircraftName)-\(observer).csv")
+            try csvString.write(to: fileURL, atomically: true, encoding: .unicode)
+        } catch {
+            print("error creating file")
         }
     }
 }
