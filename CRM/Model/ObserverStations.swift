@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 enum ObserverLocation: String {
     case Moscow
@@ -19,6 +20,7 @@ final class Observer {
     let name                : String
     let latitude            : Float
     let longitude           : Float
+    let coordinate          : CLLocationCoordinate2D
     let altitude            : Float
     var data                : [String] = []
     var isBusy              : Bool
@@ -27,10 +29,19 @@ final class Observer {
     var deferredTask        : (() -> ())? = nil
     var busyTimes           : [Int: Task] = .init()
     
-    init(type: ObserverLocation, name: String, latitude: Float, longitude: Float, altitude: Float, isBusy: Bool = false) {
+    init(
+        type: ObserverLocation,
+        name: String,
+        latitude: Float,
+        longitude: Float,
+        coordinate: CLLocationCoordinate2D,
+        altitude: Float,
+        isBusy: Bool = false
+    ) {
         self.name       = name
         self.latitude   = latitude
         self.longitude  = longitude
+        self.coordinate = coordinate
         self.altitude   = altitude
         self.isBusy     = isBusy
         self.type       = type
@@ -45,6 +56,7 @@ struct ObserverStations {
             name        : "КИС Клён-М, ЗКИП (РКС), г. Москва",
             latitude    : 55.75,
             longitude   : 37.7333,
+            coordinate  : CLLocationCoordinate2D(latitude: 55.75, longitude: 37.733),
             altitude    : 300
         ),
         Observer(
@@ -52,6 +64,7 @@ struct ObserverStations {
             name        : "КИС Клён, ЦКИП, г. Железногорск",
             latitude    : 56.2866,
             longitude   : 93.55083,
+            coordinate  : CLLocationCoordinate2D(latitude: 56.2866, longitude: 93.55083),
             altitude    : 166
         ),
         Observer(
@@ -59,6 +72,7 @@ struct ObserverStations {
             name        : "Балтийский КИП, Калининградская обл.",
             latitude    : 54.7083,
             longitude   : 20.5631,
+            coordinate  : CLLocationCoordinate2D(latitude: 54.7083, longitude: 20.5631),
             altitude    : 80
         ),
         Observer(
@@ -66,6 +80,7 @@ struct ObserverStations {
             name        : "ВКИП (ИП Сахалин), Сахалинская обл.",
             latitude    : 46.9167,
             longitude   : 142.7167,
+            coordinate  : CLLocationCoordinate2D(latitude: 46.9167, longitude: 142.7167),
             altitude    : 15
         )
     ]

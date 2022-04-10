@@ -103,7 +103,7 @@ final class CoordinatesViewController: UIViewController {
     }
     
     private func configureTabBarItem() {
-        let image = UIImage(named: "coordinates")?.withRenderingMode(.alwaysOriginal)
+        let image = UIImage(named: "aircraft")
         tabBarItem = UITabBarItem(title: "Положение", image: image, selectedImage: image)
         tabBarController?.tabBar.backgroundColor = UIColor.systemTeal.withAlphaComponent(0.1)
     }

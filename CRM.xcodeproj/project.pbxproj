@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C5E58E0280331A400FF6BD9 /* MapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5E58DF280331A400FF6BD9 /* MapController.swift */; };
 		1550A08D264FDA03000EC159 /* UIView + extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1550A08C264FDA03000EC159 /* UIView + extensions.swift */; };
 		1564B5462652887900994240 /* ConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1564B5452652887900994240 /* ConnectionManager.swift */; };
 		1564B54A26529F5300994240 /* TaskAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1564B54926529F5300994240 /* TaskAlertController.swift */; };
@@ -30,6 +31,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0C5E58DF280331A400FF6BD9 /* MapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapController.swift; sourceTree = "<group>"; };
 		1550A08C264FDA03000EC159 /* UIView + extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + extensions.swift"; sourceTree = "<group>"; };
 		1564B5452652887900994240 /* ConnectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionManager.swift; sourceTree = "<group>"; };
 		1564B54926529F5300994240 /* TaskAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskAlertController.swift; sourceTree = "<group>"; };
@@ -68,6 +70,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0C5E58DE2803319900FF6BD9 /* MapScreen */ = {
+			isa = PBXGroup;
+			children = (
+				0C5E58DF280331A400FF6BD9 /* MapController.swift */,
+			);
+			path = MapScreen;
+			sourceTree = "<group>";
+		};
 		1550A08B264FD9F4000EC159 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -111,7 +121,8 @@
 				15C8A540264FC31100566668 /* Protocols */,
 				15C8A530264FBE4900566668 /* Model */,
 				15B180B0264D4DFB00238918 /* SplashScreen */,
-				15B180A4264D4D9900238918 /* Coordinates */,
+				0C5E58DE2803319900FF6BD9 /* MapScreen */,
+				15B180A4264D4D9900238918 /* CoordinatesFlow */,
 				15B180AF264D4DEE00238918 /* System */,
 				15B18096264D4D4800238918 /* Assets.xcassets */,
 				15B1809B264D4D4800238918 /* Info.plist */,
@@ -119,7 +130,7 @@
 			path = CRM;
 			sourceTree = "<group>";
 		};
-		15B180A4264D4D9900238918 /* Coordinates */ = {
+		15B180A4264D4D9900238918 /* CoordinatesFlow */ = {
 			isa = PBXGroup;
 			children = (
 				15B180AE264D4DE300238918 /* Controllers */,
@@ -128,7 +139,7 @@
 				15B180AB264D4DD300238918 /* Views */,
 				15C8A548264FCFE000566668 /* CoordinatesProtocols.swift */,
 			);
-			path = Coordinates;
+			path = CoordinatesFlow;
 			sourceTree = "<group>";
 		};
 		15B180AB264D4DD300238918 /* Views */ = {
@@ -355,6 +366,7 @@
 				15B1808E264D4D4400238918 /* AppDelegate.swift in Sources */,
 				15C8A54F264FD6EE00566668 /* CoordinatesTableVC.swift in Sources */,
 				15A4452B26506D210064FC73 /* CustomTextField.swift in Sources */,
+				0C5E58E0280331A400FF6BD9 /* MapController.swift in Sources */,
 				1564B54A26529F5300994240 /* TaskAlertController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

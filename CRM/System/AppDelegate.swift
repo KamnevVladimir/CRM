@@ -15,8 +15,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let coordinatesVC = CoordinatesViewController()
         let coordinatesNavigationController = UINavigationController(rootViewController: coordinatesVC)
+        let mapVC = MapController()
+        
         let tabBarController = UITabBarController()
-        tabBarController.viewControllers = [coordinatesNavigationController]
+        tabBarController.viewControllers = [coordinatesNavigationController, mapVC]
         
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = tabBarController
