@@ -417,12 +417,12 @@ extension CoordinatesPresenter {
         dateFormatter.dateFormat = "MM-dd-yyyy HH:mm"
         for station in ObserverStations.observers {
             var csvString = "Станция \(station.name.replacingOccurrences(of: ",", with: " "))\n"
-            csvString += "Имя задачи,Дата,Интервал,Продолжительность [мин.]\n"
+            csvString += "Имя КА,Имя задачи,Дата,Интервал,Продолжительность [мин.]\n"
             for stroke in station.busyTimes {
                 if let taskDate = stroke.value.date {
                     let interval = Double(taskDate.timeIntervalSince1970 / 60).rounded()
                     if !csvString.contains("\(stroke.value.name)") {
-                        csvString += "КА \(stroke.value.aircraft.name.replacingOccurrences(of: ",", with: " ")),\(stroke.value.name),\(dateFormatter.string(from: taskDate)),\(interval),\(stroke.value.duration / 60)\n"
+                        csvString += "\(stroke.value.aircraft.name.replacingOccurrences(of: ",", with: " ")),\(stroke.value.name),\(dateFormatter.string(from: taskDate)),\(interval),\(stroke.value.duration / 60)\n"
                     }
                 }
             }
