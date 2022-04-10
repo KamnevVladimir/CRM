@@ -8,6 +8,8 @@ final class DetailAircraftViewController: UIViewController {
     private var airCraft: AirCraft
     private var isFirstStationVisible = false
     private var isSecondStationVisible = false
+    private var isThirdStationVisible = false
+    private var isFortyStationVisible = false
     
     private lazy var backView = UIView()
     private lazy var longTitleLabel: UILabel = {
@@ -138,6 +140,18 @@ final class DetailAircraftViewController: UIViewController {
         } else {
             secondStationLabel.text = observers[1].name + ": нет"
         }
+        
+        if isThirdStationVisible {
+            thirdStationLabel.text = observers[2].name + ": да"
+        } else {
+            thirdStationLabel.text = observers[2].name + ": нет"
+        }
+        
+        if isFortyStationVisible {
+            fortyStationLabel.text = observers[3].name + ": да"
+        } else {
+            fortyStationLabel.text = observers[3].name + ": нет"
+        }
     }
     
     private func setupStationLabels() {
@@ -210,6 +224,18 @@ final class DetailAircraftViewController: UIViewController {
             .end(LayoutConstants.textEndOffset)
             .marginTop(LayoutConstants.verticalOffset)
             .height(40)
+        thirdStationLabel.pin
+            .top(to: secondStationLabel.edge.bottom)
+            .start(LayoutConstants.horizontalOffset)
+            .end(20)
+            .marginTop(LayoutConstants.verticalOffset)
+            .height(40)
+        fortyStationLabel.pin
+            .top(to: thirdStationLabel.edge.bottom)
+            .start(LayoutConstants.horizontalOffset)
+            .end(20)
+            .marginTop(LayoutConstants.verticalOffset)
+            .height(40)
         imageView.pin
             .top(view.pin.safeArea.top)
             .marginTop(LayoutConstants.horizontalOffset)
@@ -225,7 +251,7 @@ extension DetailAircraftViewController: DetailPresenterOutput {
         airCraft = presenter.getAirCraft()
         let passes = presenter.getPasses()
         
-        if passes.count == 2 {
+        if passes.count == 4 {
             if passes[0].passesCount > 0 {
                 isFirstStationVisible = true
             } else {
@@ -236,6 +262,18 @@ extension DetailAircraftViewController: DetailPresenterOutput {
                 isSecondStationVisible = true
             } else {
                 isSecondStationVisible = false
+            }
+            
+            if passes[2].passesCount > 0 {
+                isThirdStationVisible = true
+            } else {
+                isThirdStationVisible = false
+            }
+            
+            if passes[3].passesCount > 0 {
+                isFortyStationVisible = true
+            } else {
+                isFortyStationVisible = false
             }
         }
         
