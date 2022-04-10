@@ -1,0 +1,30 @@
+PODS:
+  - PinLayout (1.9.3)
+  - SDWebImage (5.11.0):
+    - SDWebImage/Core (= 5.11.0)
+  - SDWebImage/Core (5.11.0)
+  - SwiftDate (6.3.1)
+  - SwiftyJSON (5.0.1)
+
+DEPENDENCIES:
+  - PinLayout
+  - SDWebImage
+  - SwiftDate (~> 6.3)
+  - SwiftyJSON
+
+SPEC REPOS:
+  trunk:
+    - PinLayout
+    - SDWebImage
+    - SwiftDate
+    - SwiftyJSON
+
+SPEC CHECKSUMS:
+  PinLayout: 4d8733121f8687edcc8f00c19bf1379d12808767
+  SDWebImage: 7acbb57630ac7db4a495547fb73916ff3e432f6b
+  SwiftDate: 72d28954e8e1c6c1c0f917ccc8005e4f83c7d4b2
+  SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
+
+PODFILE CHECKSUM: cda014a4e6ee7e23294b1ae82fe4881301433df0
+
+COCOAPODS: 1.11.2
